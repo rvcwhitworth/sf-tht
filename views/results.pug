@@ -1,0 +1,10 @@
+extends index
+
+block search-results
+  div(class='results-list')
+    each result in results
+      p #{result.full_name}
+      p #{result.location}
+      hr
+    else
+      p No results found
