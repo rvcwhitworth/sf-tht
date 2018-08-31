@@ -1,9 +1,16 @@
-var express = require('express');
-var router = express.Router();
+var express = require('express')
+var router = express.Router()
+var { getAccessibleIndices } = require('../db')
 
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
-});
+router.get('/:user', function(req, res, next) {
+  getAccessibleIndices(req.params.user)
+    .then(accessibleIndices => {
+      res.json(accessibleIndices)
+    })
+    .catch(err => {
+      console.error(err)
+      res.sendStatus(500)
+    })
+})
 
-module.exports = router;
+module.exports = router

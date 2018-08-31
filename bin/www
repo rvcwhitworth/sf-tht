@@ -1,18 +1,20 @@
 var clientApp = require('../clientServer')
 var apiApp = require('../apiServer')
-var debug = require('debug')('sf-tht:server')
 var http = require('http')
 
 var clientPort = process.env.CLIENT_PORT || '3000'
+var clientServer = configureAndStartServer(clientApp, clientPort, 'client')
+
 var apiPort = process.env.CLIENT_PORT || '80'
-clientApp.set('port', clientPort)
-apiApp.set('port', apiPort)
+var apiServer = configureAndStartServer(apiApp, apiPort, 'api')
 
-var clientServer = http.createServer(clientApp)
-clientServer.listen(clientPort, () => onListening(clientServer))
-
-var apiServer = http.createServer(apiApp)
-apiServer.listen(apiPort, () => onListening(apiServer))
+function configureAndStartServer(app, port, serverName) {
+  app.set('port', port)
+  var server = http.createServer(app)
+  server.listen(port, () => onListening(serverName, port))
+  server.on('error', onError)
+  return server
+}
 
 function onError(error) {
   if (error.syscall !== 'listen') {
@@ -36,8 +38,6 @@ function onError(error) {
   }
 }
 
-function onListening(server) {
-  var addr = server.address()
-  var bind = typeof addr === 'string' ? 'pipe ' + addr : 'port ' + addr.port
-  debug('Listening on ' + bind)
+function onListening(serverName, port) {
+  console.log(serverName, 'server listening on port', port)
 }

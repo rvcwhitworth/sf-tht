@@ -1,10 +1,9 @@
 var express = require('express')
 var router = express.Router()
-var API_PATH = `http://${process.env.API_URL || 'localhost'}:${process.env.API_PORT || '80'}`
 var http = require('http')
 
 router.get('/', function(req, res, next) {
-  fetchAPIData()
+  fetchAPIData(req.query.searchTerm)
     .then(results => {
       res.render('results', { results })
     })
@@ -14,8 +13,13 @@ router.get('/', function(req, res, next) {
 })
 
 function fetchAPIData() {
-  return new Promise(resolve => {
-    http.get(API_PATH, apiResponse => {
+  var options = {
+    host: process.env.API_URL || 'localhost',
+    port: process.env.API_PORT || '80'
+  }
+
+  return new Promise((resolve, reject) => {
+    http.get(options, apiResponse => {
       var results = ''
       apiResponse
         .on('data', chunk => {
