@@ -1,8 +1,18 @@
 body {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 14px 'Lucida Grande', Helvetica, Arial, sans-serif;
+  margin: 5em auto auto auto;
+  width: 50%;
+}
+
+hr {
+  width: 75%;
+}
+
+input {
+  margin: 1em;
 }
 
 a {
-  color: #00B7FF;
+  color: #00b7ff;
 }

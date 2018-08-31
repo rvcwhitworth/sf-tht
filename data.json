@@ -1,0 +1,38 @@
+{
+  "foo_index": [
+    {
+      "first_name": "fred",
+      "last_name": "flinstone",
+      "location": "bedrock"
+    },
+    {
+      "first_name": "fred",
+      "last_name": "rogers",
+      "location": "land of make-believe"
+    }
+  ],
+  "bar_index": [
+    {
+      "first_name": "fred",
+      "last_name": "armisen",
+      "location": "portland"
+    },
+    {
+      "first_name": "fred",
+      "last_name": "savage",
+      "location": "the wonder years"
+    }
+  ],
+  "baz_index": [
+    {
+      "first_name": "george",
+      "last_name": "lucas",
+      "location": "star wars ranch"
+    },
+    {
+      "first_name": "george",
+      "last_name": "takei",
+      "location": "space"
+    }
+  ]
+}
