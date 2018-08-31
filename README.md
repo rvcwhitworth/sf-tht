@@ -30,6 +30,7 @@ The API can be interacted with in the following ways:
 
 - Through the client, a user can search for user documents in indices they have access to, specifically users named `fred`. For now, the user `foo` is assumed to already be authenticated.
 - A list of accessible indices for `foo` can be viewed at http://localhost:80/users/foo
+- The list of documents displayed in the client can be viewed at http://localhost:80/search/fred
 
 ## Database
 
