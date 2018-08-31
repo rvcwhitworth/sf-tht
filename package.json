@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "npm i node ./bin/www",
+    "start:windows": "npm i & node ./bin/www"
   },
   "dependencies": {
     "elasticsearch": "^15.1.1",
