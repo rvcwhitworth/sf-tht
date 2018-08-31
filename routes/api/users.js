@@ -1,6 +1,6 @@
 var express = require('express')
 var router = express.Router()
-var { getAccessibleIndices } = require('../db')
+var { getAccessibleIndices } = require('../../db')
 
 router.get('/:user', function(req, res, next) {
   getAccessibleIndices(req.params.user)

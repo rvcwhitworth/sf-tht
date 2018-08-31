@@ -48,7 +48,14 @@ function mapDataToAction(document, id, index) {
   return [{ index: { _index: index, _type: 'docs', _id: id } }, document]
 }
 
-function searchDocuments(indices, searchTerm) {}
+function searchDocuments(indices, term) {
+  return client
+    .search({
+      index: indices,
+      q: 'first_name:' + term
+    })
+    .then(results => results.hits.hits)
+}
 
 module.exports = {
   resetIndicesAndAddData,

@@ -3,8 +3,8 @@ var express = require('express')
 var path = require('path')
 var logger = require('morgan')
 
-var indexRouter = require('./routes')
-var usersRouter = require('./routes/users')
+var usersRouter = require('./routes/api/users')
+var searchRouter = require('./routes/api/search')
 
 var app = express()
 
@@ -13,20 +13,7 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 
 app.use('/users', usersRouter)
-app.use('/', (req, res) => {
-  res.json([
-    {
-      id: 1,
-      full_name: 'fred flinstone',
-      location: 'bedrock'
-    },
-    {
-      id: 2,
-      full_name: 'fred rogers',
-      location: 'land of make-believe'
-    }
-  ])
-})
+app.use('/search', searchRouter)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

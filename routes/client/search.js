@@ -12,10 +12,11 @@ router.get('/', function(req, res, next) {
     })
 })
 
-function fetchAPIData() {
+function fetchAPIData(searchTerm) {
   var options = {
     host: process.env.API_URL || 'localhost',
-    port: process.env.API_PORT || '80'
+    port: process.env.API_PORT || '80',
+    path: '/search/' + searchTerm
   }
 
   return new Promise((resolve, reject) => {
