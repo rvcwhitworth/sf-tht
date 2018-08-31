@@ -1,6 +1,9 @@
 var clientApp = require('../clientServer')
 var apiApp = require('../apiServer')
 var http = require('http')
+var { resetIndicesAndAddData } = require('../elasticsearch') 
+
+resetIndicesAndAddData()
 
 var clientPort = process.env.CLIENT_PORT || '3000'
 var clientServer = configureAndStartServer(clientApp, clientPort, 'client')

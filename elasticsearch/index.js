@@ -9,39 +9,34 @@ var client = new elasticsearch.Client({
 
 function resetIndicesAndAddData() {
   var indices = ['foo_index', 'bar_index', 'baz_index']
-  indices.forEach(index => {
-    indexExists(index)
-    .then(exists => exists ?  deleteIndex(index) : null)
+  Promise.all(indices.map(resetIndexAndAddData))
+    .then(() => console.log('Successfully reset Elasticsearch indices and added data'))
+    .catch(err => console.error(err))
+}
+
+function resetIndexAndAddData(index) {
+  return indexExists(index)
+    .then(exists => (exists ? deleteIndex(index) : null))
     .then(() => createIndex(index))
     .then(() => addData(index))
-  })
 }
 
 function createIndex(index) {
-  return client.indices.create({
-    index
-  })
+  return client.indices.create({ index })
 }
 
 function deleteIndex(index) {
-  return client.indices.delete({
-    index
-  })
+  return client.indices.delete({ index })
 }
 
 function indexExists(index) {
-  return client.indices.exists({
-    index
-  })
+  return client.indices.exists({ index })
 }
 
 function addData(index) {
   var index_data = data[index]
-  var body = index_data
-    .map((document, id) => mapDataToAction(document, id, index))
-    .reduce(reduceDataAndAction, [])
-
-  return client.bulk({ body })  
+  var body = index_data.map((document, id) => mapDataToAction(document, id + 1, index)).reduce(reduceDataAndAction, [])
+  return client.bulk({ body })
 }
 
 function reduceDataAndAction(body, actionWithData) {
@@ -50,17 +45,12 @@ function reduceDataAndAction(body, actionWithData) {
 }
 
 function mapDataToAction(document, id, index) {
-  return [
-    { index:  { _index: index, _type: 'docs', _id: id } },
-    document
-  ]
+  return [{ index: { _index: index, _type: 'docs', _id: id } }, document]
 }
 
-function searchDocuments(indices, searchTerm) {
-
-}
+function searchDocuments(indices, searchTerm) {}
 
 module.exports = {
-  resetIndicesAndAddData
+  resetIndicesAndAddData,
   searchDocuments
 }
