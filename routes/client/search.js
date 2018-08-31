@@ -4,7 +4,7 @@ var http = require('http')
 
 router.get('/', function(req, res, next) {
   fetchAPIData(req.query.searchTerm)
-    .then(results => {
+    .then(({ results }) => {
       res.render('results', { results })
     })
     .catch(error => {
@@ -20,19 +20,20 @@ function fetchAPIData(searchTerm) {
   }
 
   return new Promise((resolve, reject) => {
-    http.get(options, apiResponse => {
-      var results = ''
-      apiResponse
-        .on('data', chunk => {
-          results += chunk
-        })
-        .on('end', () => {
-          resolve(JSON.parse(results))
-        })
-        .on('error', error => {
-          reject(error)
-        })
-    })
+    http
+      .get(options, apiResponse => {
+        var results = ''
+        apiResponse
+          .on('data', chunk => {
+            results += chunk
+          })
+          .on('end', () => {
+            resolve(JSON.parse(results))
+          })
+      })
+      .on('error', error => {
+        reject(error)
+      })
   })
 }
 
