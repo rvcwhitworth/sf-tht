@@ -1,5 +1,5 @@
 var sqlite3 = require('sqlite3').verbose()
-var DATABASE_FILENAME = process.env.DATABASE_FILENAME || './db/api.db'
+var DATABASE_FILENAME = './db/api.db'
 
 function openConnection() {
   return new Promise((resolve, reject) => {

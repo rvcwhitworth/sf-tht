@@ -1,5 +1,5 @@
 var elasticsearch = require('elasticsearch')
-var ELASTICSEARCH_SERVER_HOST = process.env.ELASTICSEARCH_SERVER_HOST || 'localhost:9200'
+var ELASTICSEARCH_SERVER_HOST = 'localhost:9200'
 var data = require('../data.json')
 
 var client = new elasticsearch.Client({

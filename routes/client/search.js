@@ -14,8 +14,8 @@ router.get('/', function(req, res, next) {
 
 function fetchAPIData(searchTerm) {
   var options = {
-    host: process.env.API_URL || 'localhost',
-    port: process.env.API_PORT || '80',
+    host: 'localhost',
+    port: 80,
     path: '/search/' + searchTerm
   }
 

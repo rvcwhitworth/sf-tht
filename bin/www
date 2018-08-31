@@ -5,10 +5,10 @@ var { resetIndicesAndAddData } = require('../elasticsearch')
 
 resetIndicesAndAddData()
 
-var clientPort = process.env.CLIENT_PORT || '3000'
+var clientPort = 3000
 var clientServer = configureAndStartServer(clientApp, clientPort, 'client')
 
-var apiPort = process.env.CLIENT_PORT || '80'
+var apiPort = 80
 var apiServer = configureAndStartServer(apiApp, apiPort, 'api')
 
 function configureAndStartServer(app, port, serverName) {
