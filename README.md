@@ -20,9 +20,9 @@ The following are required to run the API:
 - Java
 - A running instance of Elasticsearch listening on port 9200
 
-## Starting the API
+## Installation and Starting the API
 
-From the root directory, run `npm start` on a Unix machine or `npm run start:windows` on a Windows machine to install the dependences and start both servers. The client is then viewable at http://localhost:3000.
+From the root directory, run `npm install` to install dependences. Next, run `npm start` to start both servers. The client is then viewable at http://localhost:3000.
 
 ## Interacting with the API
 
