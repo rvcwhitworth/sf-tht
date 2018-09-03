@@ -16,7 +16,7 @@ This API has the following:
 The following are required to run the API:
 
 - sqlite3
-- NodeJS
+- Node.js
 - Java
 - A running instance of Elasticsearch listening on port 9200
 
